@@ -9,7 +9,7 @@ const App = {
     methods: {
         inputChange(event) {
             console.log(event, event.data, event.target.value)
-            this.inputValue = event.target.value
+            this.inputValue = event.target.value 
         }
     },
 }
