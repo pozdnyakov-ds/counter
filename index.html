@@ -10,21 +10,39 @@
 
     <div id="app">
       <div class="center">
-        <h1>{{title}}</h1>
+        <h1 :style="{color: 'red'}">{{title}}</h1>
         <div>
           <div>
-            <input type="text" 
-              style="margin-right: 10px;" 
-              v-bind:placeholder="placeholder"
-              v-bind:value="inputValue"
-              v-on:input="inputChange">
+            <input 
+              type="text" 
+              :style="{
+                  marginRight: '10px',
+                  borderColor: inputValue.length > 0 ? '#ccc' : 'red',
+                  borderRadius: '5px'
+              }" 
+              :placeholder="placeholder"
+              v-model="inputValue"
+              @keypress.enter="addNote">
           </div>  
-          <button class="btn primary" style="margin-top: 10px;" v-on:click="counter++">Plus</button>
+          <button class="btn primary" style="margin-top: 10px;" v-on:click="addNote">Plus</button>
         </div>
         <h1>inputValue: {{inputValue}}</h1>
       </div>
-    </div>
 
+      <hr>
+
+      <ul class="list" v-if="notes.length !== 0">
+        <li style="margin-top: 10px;" class="list-item" v-for="(note, index) in notes">
+          [{{index+1}}] {{toUpperCase(note)}}
+          <button class="danger" v-on:click="deleteNote(index)">Удалить</button>
+        </li>  
+        <hr>
+        <b>Count: {{notes.length}} | {{doubleCount}}</b>
+      </ul>
+      <div v-else>Нет записей</div>
+
+    </div>
+      
     <script src="https://unpkg.com/vue@next"></script>
     <script src="/src/main.js"></script>
   </body>
