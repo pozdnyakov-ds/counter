@@ -1,12 +1,18 @@
 const App = {
-    data() {
+    data: () => ({
+        title: 'Список заметок',
+        placeholder: 'Ввести название...',
+        inputValue: '',
+        notes: ['Заметка 1', 'Заметка 2', 'Заметка 3', 'Заметка 4']        
+    }),
+    /*data() {
         return {
             title: 'Список заметок',
             placeholder: 'Ввести название...',
             inputValue: '',
             notes: ['Заметка 1', 'Заметка 2', 'Заметка 3', 'Заметка 4']
         }
-    },
+    },*/
     methods: {
         inputChange(event) {
             console.log(event, event.data, event.target.value)
